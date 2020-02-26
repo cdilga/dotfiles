@@ -123,4 +123,4 @@ export DOCKER_BUILDKIT=1
 
 # iTerm 2 configuration
 source ~/.iterm2_shell_integration.zsh
-alias dotfiles='/usr/bin/git --git-dir=/Users/cdilga/.dotfiles/ --work-tree=/Users/cdilga'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
