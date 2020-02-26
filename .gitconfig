@@ -1,0 +1,9 @@
+[alias]
+	ll = log --oneline --graph --all --decorate
+[help]
+	complete = 20
+[user]
+	name = cdilga
+	email = cdilga@users.noreply.github.com
+[diff]
+	algorithm = patience
