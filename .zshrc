@@ -124,3 +124,7 @@ export DOCKER_BUILDKIT=1
 # iTerm 2 configuration
 source ~/.iterm2_shell_integration.zsh
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
