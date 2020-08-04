@@ -1,0 +1,19 @@
+# Node
+npm-debug.log
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+
+# VSCode
+*.code-workspace
+
+# vi
+*~
+
+# General
+log/
+*.log
