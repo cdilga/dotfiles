@@ -5,6 +5,7 @@
 [user]
 	name = cdilga
 	email = cdilga@users.noreply.github.com
+	signingkey = 27B1A330F881AB84
 [diff]
 	algorithm = patience
 [filter "lfs"]
@@ -12,3 +13,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
+[core]
+	editor = code --wait
