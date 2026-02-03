@@ -1,22 +1,8 @@
-[alias]
-	ll = log --oneline --graph --all --decorate
-[help]
-	complete = 20
 [user]
-	name = cdilga
+	name = Chris Dilger
 	email = cdilga@users.noreply.github.com
-	signingkey = 16E1D3B6A36AF0D7
-[diff]
-	algorithm = patience
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[gpg]
-	program = gpg
-[commit]
-	gpgsign = true
-[core]
-	editor = code --wait
-	excludesfile = /Users/cdilga/.gitignore
+	signingkey = BA7FB1924899A408
+[init]
+	defaultBranch = main
+[push]
+	default = current
