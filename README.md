@@ -6,7 +6,7 @@ macOS dev environment, laid out as one [GNU Stow](https://www.gnu.org/software/s
 zsh/        .zshrc, .p10k.zsh
 git/        .gitconfig
 wezterm/    .wezterm.lua
-karabiner/  .config/karabiner/karabiner.json   Super key + all WM keybinds
+karabiner/  karabiner.json + install.sh (copied, not stowed: Karabiner rewrites symlinks)
 yabai/      .config/yabai/yabairc
 macos/      defaults.sh                         Spaces, Mission Control + Spotlight shortcuts
 Brewfile    everything installed via Homebrew
@@ -19,8 +19,6 @@ bootstrap.sh
 git clone https://github.com/cdilga/dotfiles ~/dotfiles
 ~/dotfiles/bootstrap.sh
 ```
-
-Clone to `~/dotfiles`, not under `~/Documents`: macOS privacy controls stop Karabiner reading a symlinked `karabiner.json` there.
 
 `bootstrap.sh` installs the Brewfile, stows the packages and runs `macos/defaults.sh`. macOS does not let scripts grant Accessibility or Input Monitoring, so it prints the remaining manual steps.
 

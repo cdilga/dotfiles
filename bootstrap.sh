@@ -1,7 +1,6 @@
 #!/bin/bash
 # New-machine setup:
 #   git clone https://github.com/cdilga/dotfiles ~/dotfiles && ~/dotfiles/bootstrap.sh
-# Must live outside ~/Documents (TCC blocks Karabiner reading symlinked config there).
 # Requires Homebrew already installed (https://brew.sh).
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -9,10 +8,11 @@ cd "$(dirname "$0")"
 command -v brew >/dev/null || { echo "Install Homebrew first: https://brew.sh"; exit 1; }
 brew bundle --file=Brewfile
 
-for pkg in zsh git wezterm karabiner yabai; do
+for pkg in zsh git wezterm yabai; do
   stow --no-folding -v -t "$HOME" "$pkg"
 done
 
+./karabiner/install.sh   # copied, not stowed: Karabiner rewrites its own config file
 ./macos/defaults.sh
 
 cat <<'MSG'
