@@ -30,7 +30,7 @@ for kc in 18 19 20 21 23 22 26 28 25; do
   i=$((i + 1))
 done
 
-# Spotlight UI -> Option+Space (Cmd+Space is remapped to Asyar by Karabiner); Finder-search shortcut off
+# Spotlight UI -> Option+Space (frees Cmd+Space for Asyar); Finder-search shortcut off
 set_hk 64 true 32 49 524288
 set_hk 65 false 32 49 1572864
 

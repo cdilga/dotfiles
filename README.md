@@ -16,9 +16,11 @@ bootstrap.sh
 ## New machine
 
 ```bash
-git clone https://github.com/cdilga/dotfiles ~/Documents/dev/dotfiles
-~/Documents/dev/dotfiles/bootstrap.sh
+git clone https://github.com/cdilga/dotfiles ~/dotfiles
+~/dotfiles/bootstrap.sh
 ```
+
+Clone to `~/dotfiles`, not under `~/Documents`: macOS privacy controls stop Karabiner reading a symlinked `karabiner.json` there.
 
 `bootstrap.sh` installs the Brewfile, stows the packages and runs `macos/defaults.sh`. macOS does not let scripts grant Accessibility or Input Monitoring, so it prints the remaining manual steps.
 
@@ -39,7 +41,7 @@ Keyboard-first, Omarchy/Hyprland-like, SIP left **on**.
 - **Karabiner-Elements**: the physical Application/Menu key is **Super**, held as a variable (not a synthetic modifier, so `Super+Shift+X` stays distinct from `Super+X`). Karabiner replaces skhd and runs `yabai -m` directly.
 - **yabai**: tiling, focus and warp. Without the scripting addition it cannot switch Spaces or move windows between them.
 - **noswoosh**: makes native Space switching near-instant. Karabiner sends the native `Ctrl+N` shortcuts.
-- **Asyar**: launcher. `Cmd+Space` and `Super+Space` both go to Asyar through one chord (`Ctrl+Opt+Cmd+Space`). Apple Spotlight is still available on `Option+Space`.
+- **Asyar**: launcher, hotkey `Cmd+Space`. `Super+Space` emits `Cmd+Space`. Apple Spotlight moves to `Option+Space`.
 - **Push-to-talk**: Karabiner emits F18 down/up from `Super+V` and, once identified, the MX Master gesture button. The dictation engine that listens for F18 is still to be chosen. BetterTouchTool was dropped (paid).
 
 | Keys | Action |
@@ -50,7 +52,7 @@ Keyboard-first, Omarchy/Hyprland-like, SIP left **on**.
 | Super+F / Super+T | zoom-fullscreen / toggle float |
 | Super+Tab / Super+Shift+Tab | next / previous Space |
 | Super+Enter | WezTerm |
-| Super+Space, Cmd+Space | Asyar |
+| Cmd+Space, Super+Space | Asyar |
 | Option+Space | Apple Spotlight |
 
 Not done yet: `Super+Shift+1..9` (move window to Space) needs the yabai scripting addition, which means changing SIP. Deferred until it is missed.

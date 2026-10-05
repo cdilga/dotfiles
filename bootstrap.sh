@@ -1,6 +1,7 @@
 #!/bin/bash
 # New-machine setup:
-#   git clone https://github.com/cdilga/dotfiles ~/Documents/dev/dotfiles && ~/Documents/dev/dotfiles/bootstrap.sh
+#   git clone https://github.com/cdilga/dotfiles ~/dotfiles && ~/dotfiles/bootstrap.sh
+# Must live outside ~/Documents (TCC blocks Karabiner reading symlinked config there).
 # Requires Homebrew already installed (https://brew.sh).
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -20,6 +21,6 @@ Manual steps (macOS will not let scripts do these):
  1. System Settings > Privacy: grant Accessibility to yabai, Karabiner, noswoosh, Asyar;
     Input Monitoring to Karabiner. Then: yabai --start-service ; noswoosh setup
  2. Mission Control: create Spaces up to 9.
- 3. Asyar: set its global hotkey to Ctrl+Opt+Cmd+Space (Karabiner maps Cmd+Space and Super+Space to it).
+ 3. Asyar: set its global hotkey to Cmd+Space (Karabiner's Super+Space emits it).
  4. Create untracked machine files: ~/.zshrc.local (secrets), ~/.gitconfig.local, ~/.wezterm.local.lua
 MSG

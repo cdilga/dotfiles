@@ -611,8 +611,6 @@
                   {
                     "key_code": "spacebar",
                     "modifiers": [
-                      "left_control",
-                      "left_option",
                       "left_command"
                     ]
                   }
@@ -628,7 +626,7 @@
             ]
           },
           {
-            "description": "Super+V -> F18 (push-to-talk hook for BTT)",
+            "description": "Super+V -> F18 (push-to-talk hook)",
             "manipulators": [
               {
                 "type": "basic",
@@ -645,32 +643,6 @@
                     "type": "variable_if",
                     "name": "super",
                     "value": 1
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "description": "Cmd+Space -> Asyar",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "spacebar",
-                  "modifiers": {
-                    "mandatory": [
-                      "command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "spacebar",
-                    "modifiers": [
-                      "left_control",
-                      "left_option",
-                      "left_command"
-                    ]
                   }
                 ]
               }
