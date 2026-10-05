@@ -16,7 +16,6 @@ brew "herdr"
 # window-management stack (see README)
 brew "asmvik/formulae/yabai"
 cask "karabiner-elements"
-cask "bettertouchtool"
 cask "mmathys/tap/noswoosh"
 cask "xoshbin/asyar/asyar"
 cask "wezterm"

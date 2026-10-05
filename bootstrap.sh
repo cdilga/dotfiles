@@ -9,7 +9,7 @@ command -v brew >/dev/null || { echo "Install Homebrew first: https://brew.sh"; 
 brew bundle --file=Brewfile
 
 for pkg in zsh git wezterm karabiner yabai; do
-  stow -v -t "$HOME" "$pkg"
+  stow --no-folding -v -t "$HOME" "$pkg"
 done
 
 ./macos/defaults.sh
@@ -17,7 +17,7 @@ done
 cat <<'MSG'
 
 Manual steps (macOS will not let scripts do these):
- 1. System Settings > Privacy: grant Accessibility to yabai, Karabiner, BetterTouchTool, noswoosh, Asyar;
+ 1. System Settings > Privacy: grant Accessibility to yabai, Karabiner, noswoosh, Asyar;
     Input Monitoring to Karabiner. Then: yabai --start-service ; noswoosh setup
  2. Mission Control: create Spaces up to 9.
  3. Asyar: set its global hotkey to Ctrl+Opt+Cmd+Space (Karabiner maps Cmd+Space and Super+Space to it).

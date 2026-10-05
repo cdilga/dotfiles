@@ -40,7 +40,7 @@ Keyboard-first, Omarchy/Hyprland-like, SIP left **on**.
 - **yabai**: tiling, focus and warp. Without the scripting addition it cannot switch Spaces or move windows between them.
 - **noswoosh**: makes native Space switching near-instant. Karabiner sends the native `Ctrl+N` shortcuts.
 - **Asyar**: launcher. `Cmd+Space` and `Super+Space` both go to Asyar through one chord (`Ctrl+Opt+Cmd+Space`). Apple Spotlight is still available on `Option+Space`.
-- **BetterTouchTool**: MX Master gestures and push-to-talk (`Super+V` emits F18 as a hook).
+- **Push-to-talk**: Karabiner emits F18 down/up from `Super+V` and, once identified, the MX Master gesture button. The dictation engine that listens for F18 is still to be chosen. BetterTouchTool was dropped (paid).
 
 | Keys | Action |
 |---|---|
