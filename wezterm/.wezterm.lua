@@ -91,4 +91,8 @@ config.keys = {
 config.front_end = "WebGpu"
 config.max_fps = 120
 
+-- Machine-specific overrides (untracked): ~/.wezterm.local.lua returns function(config) ... end
+local ok, apply_local = pcall(dofile, wezterm.home_dir .. '/.wezterm.local.lua')
+if ok and type(apply_local) == 'function' then apply_local(config) end
+
 return config

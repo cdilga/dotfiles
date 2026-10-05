@@ -1,53 +1,67 @@
 # dotfiles
 
-Personal configuration files for macOS development environment.
+macOS dev environment, laid out as one [GNU Stow](https://www.gnu.org/software/stow/) package per tool. Each directory mirrors `$HOME`.
 
-## Contents
-
-- `.zshrc` - Zsh configuration with lazy-loading for nvm/pyenv/conda, git aliases, and shell enhancements
-- `.p10k.zsh` - Powerlevel10k theme configuration
-- `.wezterm.lua` - WezTerm terminal configuration with macOS-native keybindings
-- `.gitconfig` - Git configuration
-
-## Features
-
-### Zsh
-- Fast startup with lazy-loaded nvm, pyenv, and conda
-- Git aliases (g, ga, gst, gco, etc.)
-- zsh-autosuggestions with Tab to accept
-- History substring search (Up/Down filters by current input)
-- fzf integration (Ctrl+R for history, Ctrl+T for files)
-- zoxide for smart directory jumping
-
-### WezTerm
-- Catppuccin Mocha theme
-- MesloLGS NF font (Nerd Font)
-- macOS-native cursor movement:
-  - `Opt+Arrow` - word navigation
-  - `Cmd+Arrow` - line start/end
-  - `Opt+Backspace` - delete word
-  - `Cmd+Backspace` - delete to line start
-- WebGPU rendering at 120fps
-
-## Installation
-
-```bash
-# Clone the repo
-git clone https://github.com/cdilga/dotfiles.git ~/dotfiles
-
-# Symlink configs (backup existing files first)
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.p10k.zsh ~/.p10k.zsh
-ln -sf ~/dotfiles/.wezterm.lua ~/.wezterm.lua
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+```
+zsh/        .zshrc, .p10k.zsh
+git/        .gitconfig
+wezterm/    .wezterm.lua
+karabiner/  .config/karabiner/karabiner.json   Super key + all WM keybinds
+yabai/      .config/yabai/yabairc
+macos/      defaults.sh                         Spaces, Mission Control + Spotlight shortcuts
+Brewfile    everything installed via Homebrew
+bootstrap.sh
 ```
 
-## Dependencies
+## New machine
 
 ```bash
-# Homebrew packages
-brew install powerlevel10k zsh-autosuggestions zsh-history-substring-search fzf zoxide
-
-# Fonts
-brew install --cask font-meslo-lg-nerd-font
+git clone https://github.com/cdilga/dotfiles ~/Documents/dev/dotfiles
+~/Documents/dev/dotfiles/bootstrap.sh
 ```
+
+`bootstrap.sh` installs the Brewfile, stows the packages and runs `macos/defaults.sh`. macOS does not let scripts grant Accessibility or Input Monitoring, so it prints the remaining manual steps.
+
+## Machine-specific and secret config (never committed)
+
+This repo is public. Tracked files source these optional, untracked files:
+
+| File | For |
+|---|---|
+| `~/.zshrc.local` | tokens, private paths |
+| `~/.gitconfig.local` | LAN credential helpers |
+| `~/.wezterm.local.lua` | returns `function(config) ... end`, e.g. SSH domains |
+
+## Window-management stack
+
+Keyboard-first, Omarchy/Hyprland-like, SIP left **on**.
+
+- **Karabiner-Elements**: the physical Application/Menu key is **Super**, held as a variable (not a synthetic modifier, so `Super+Shift+X` stays distinct from `Super+X`). Karabiner replaces skhd and runs `yabai -m` directly.
+- **yabai**: tiling, focus and warp. Without the scripting addition it cannot switch Spaces or move windows between them.
+- **noswoosh**: makes native Space switching near-instant. Karabiner sends the native `Ctrl+N` shortcuts.
+- **Asyar**: launcher. `Cmd+Space` and `Super+Space` both go to Asyar through one chord (`Ctrl+Opt+Cmd+Space`). Apple Spotlight is still available on `Option+Space`.
+- **BetterTouchTool**: MX Master gestures and push-to-talk (`Super+V` emits F18 as a hook).
+
+| Keys | Action |
+|---|---|
+| Super+H/J/K/L | focus west/south/north/east |
+| Super+Shift+H/J/K/L | warp window |
+| Super+1..9 | switch to Desktop N |
+| Super+F / Super+T | zoom-fullscreen / toggle float |
+| Super+Tab / Super+Shift+Tab | next / previous Space |
+| Super+Enter | WezTerm |
+| Super+Space, Cmd+Space | Asyar |
+| Option+Space | Apple Spotlight |
+
+Not done yet: `Super+Shift+1..9` (move window to Space) needs the yabai scripting addition, which means changing SIP. Deferred until it is missed.
+
+`macos/defaults.sh` also moves ChatGPT's "Show mini" shortcut off `Option+Space`. The app has no UI to clear it.
+
+## Shell
+
+- Lazy-loaded nvm/pyenv, git aliases, zsh-autosuggestions, history substring search, fzf, zoxide, Powerlevel10k.
+- WezTerm: Catppuccin Mocha, MesloLGS NF, WebGPU at 120fps, macOS-style Opt/Cmd cursor movement.
+
+## Theme sync with Omarchy
+
+Planned: one palette file that generates WezTerm and yabai colours here. Omarchy gets its own generated output, so the two sides share the palette but not the tools.

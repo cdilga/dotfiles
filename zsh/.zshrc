@@ -21,6 +21,10 @@ setopt HIST_IGNORE_SPACE
 # Fast completion (skip security audit, use cache)
 autoload -Uz compinit && compinit -C -u
 
+# Prefer the keychain-backed `gh` login for this Mac over inherited process env.
+unset GH_TOKEN
+unset GITHUB_TOKEN
+
 # ============================================================================
 # PATH SETUP (fast, no subshells)
 # ============================================================================
@@ -49,6 +53,11 @@ alias glog='git log --oneline --decorate --graph'
 alias gp='git push'
 alias gst='git status'
 alias gsw='git switch'
+
+# Keep NTM aliases/completions aligned with the installed binary.
+if command -v ntm >/dev/null 2>&1; then
+  eval "$(ntm shell zsh)"
+fi
 
 # Claude Code with type-ahead capture
 alias cc='/Users/cdilga/Documents/dev/dilger-toolbox/claude-wrapper.sh'
@@ -126,26 +135,6 @@ if [[ -x "$PYENV_ROOT/bin/pyenv" ]]; then
 fi
 
 # ============================================================================
-# LAZY LOAD CONDA (saves ~0.8s)
-# Self-contained wrapper for Claude Code shell snapshot compatibility
-# ============================================================================
-conda() {
-  unset -f conda
-  __conda_setup="$('/Users/cdilga/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-    if [ -f "/Users/cdilga/anaconda3/etc/profile.d/conda.sh" ]; then
-      . "/Users/cdilga/anaconda3/etc/profile.d/conda.sh"
-    else
-      export PATH="/Users/cdilga/anaconda3/bin:$PATH"
-    fi
-  fi
-  unset __conda_setup
-  conda "$@"
-}
-
-# ============================================================================
 # SHELL ENHANCEMENTS
 # ============================================================================
 # Autosuggestions (ghost text from history)
@@ -182,3 +171,62 @@ source ~/.cache/zsh/zoxide.zsh
 # ============================================================================
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# bun completions
+[ -s "/Users/cdilga/.bun/_bun" ] && source "/Users/cdilga/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Prefer the source-built beads_rust binary from ~/.local/bin.
+unalias br 2>/dev/null  # br installer - remove conflicting alias
+
+# >>> MCP Agent Mail alias (DISABLED by Rust installer on 2026-04-07T07:55:56Z)
+# if [[ ":$PATH:" != *":/Users/cdilga/.local/bin:"* ]]; then
+#   export PATH="/Users/cdilga/.local/bin:$PATH"
+# fi
+# Rust binary installed at: /Users/cdilga/.local/bin/am
+# To restore Python version: uncomment the alias line(s) above
+# <<< MCP Agent Mail alias (DISABLED)
+
+# >>> MCP Agent Mail alias (DISABLED by Rust installer on 2026-04-07T07:55:56Z)
+# alias bd='br'
+# Rust binary installed at: /Users/cdilga/.local/bin/am
+# To restore Python version: uncomment the alias line(s) above
+# <<< MCP Agent Mail alias (DISABLED)
+
+# >>> MCP Agent Mail alias (DISABLED by Rust installer on 2026-04-07T07:55:56Z)
+# alias am='/Users/cdilga/.local/bin/am'
+# Rust binary installed at: /Users/cdilga/.local/bin/am
+# To restore Python version: uncomment the alias line(s) above
+# <<< MCP Agent Mail alias (DISABLED)
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/cdilga/.lmstudio/bin"
+# End of LM Studio CLI section
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<
+
+# kimi-code
+export PATH="/Users/cdilga/.kimi-code/bin:$PATH"
+
+# dcg: warn if hook was silently removed from Claude Code settings
+if command -v dcg &>/dev/null && command -v jq &>/dev/null; then
+  if [ -f "$HOME/.claude/settings.json" ] && \
+     ! jq -e '.hooks.PreToolUse[]? | select(.hooks[]?.command | test("dcg\"?$"))' \
+       "$HOME/.claude/settings.json" &>/dev/null; then
+    printf '\033[1;33m[dcg] Hook missing from ~/.claude/settings.json — run: dcg install\033[0m\n'
+  fi
+fi
+
+# Machine-specific / secret config (untracked; see README)
+[[ -r ~/.zshrc.local ]] && source ~/.zshrc.local

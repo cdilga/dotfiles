@@ -1,8 +1,0 @@
-[user]
-	name = Chris Dilger
-	email = cdilga@users.noreply.github.com
-	signingkey = BA7FB1924899A408
-[init]
-	defaultBranch = main
-[push]
-	default = current

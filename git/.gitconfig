@@ -1,0 +1,21 @@
+[user]
+	name = Chris Dilger
+	email = cdilga@users.noreply.github.com
+	signingkey = BA7FB1924899A408
+[init]
+	defaultBranch = main
+[push]
+	default = current
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[include]
+	path = ~/.gitconfig.local
