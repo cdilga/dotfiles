@@ -38,7 +38,7 @@ This repo is public. Tracked files source these optional, untracked files:
 
 Keyboard-first, Omarchy/Hyprland-like, SIP left **on**.
 
-- **Karabiner-Elements**: the physical Application/Menu key is **Super**, held as a variable (not a synthetic modifier, so `Super+Shift+X` stays distinct from `Super+X`). Karabiner replaces skhd and runs `yabai -m` directly.
+- **Karabiner-Elements**: **Caps Lock** is **Super** (remapped, so it never locks), held as a variable (not a synthetic modifier, so `Super+Shift+X` stays distinct from `Super+X`). Karabiner replaces skhd and runs `yabai -m` directly.
 - **yabai**: tiling, focus and warp. Without the scripting addition it cannot switch Spaces or move windows between them.
 - **noswoosh**: makes native Space switching near-instant. Karabiner sends the native `Ctrl+N` shortcuts.
 - **Asyar**: launcher, hotkey `Cmd+Space`. `Super+Space` emits `Cmd+Space`. Apple Spotlight moves to `Option+Space`.

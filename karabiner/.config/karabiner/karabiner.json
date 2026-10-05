@@ -9,12 +9,12 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "Application/Menu key = Super (variable)",
+            "description": "Caps Lock = Super (variable; never locks)",
             "manipulators": [
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "application"
+                  "key_code": "caps_lock"
                 },
                 "to": [
                   {
