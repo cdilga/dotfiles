@@ -1,0 +1,32 @@
+%YAML 1.3
+# MX Master 3S gesture button (divert-keys 195: 2 = Mouse Gestures). Same behaviour as mx-gesture on macOS:
+#   hold, talk, release  -> dictation (voxtype transcribes while you talk)
+#   hold + swipe         -> gesture; the recording started on press is discarded
+---
+- Key: [Mouse Gesture Button, pressed]
+- Execute: [voxtype, record, start]
+...
+---
+- MouseGesture: Mouse Gesture Button
+- Execute: [voxtype, record, stop]
+...
+---
+- MouseGesture: Mouse Right
+- Execute: [voxtype, record, cancel]
+- Execute: [hyprctl, dispatch, 'hl.dsp.focus({ workspace = "e+1" })']
+...
+---
+- MouseGesture: Mouse Left
+- Execute: [voxtype, record, cancel]
+- Execute: [hyprctl, dispatch, 'hl.dsp.focus({ workspace = "e-1" })']
+...
+---
+- MouseGesture: Mouse Up
+- Execute: [voxtype, record, cancel]
+- Execute: [/home/cdilga/.local/bin/mouse-focus-or-launch, 'brave-browser|chromium|firefox|zen', omarchy-launch-browser]
+...
+---
+- MouseGesture: Mouse Down
+- Execute: [voxtype, record, cancel]
+- Execute: [/home/cdilga/.local/bin/mouse-focus-or-launch, 'ghostty|org\.omarchy\.terminal|alacritty|kitty|foot', omarchy-launch-terminal]
+...

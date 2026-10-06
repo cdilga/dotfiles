@@ -1,0 +1,118 @@
+# AeroSpace: tiling + virtual workspaces, no SIP changes.
+# Keymap mirrors Omarchy (see KEYMAP.md). "Super" = Caps Lock, which Karabiner turns into
+# Ctrl+Opt+Cmd while held (Esc when tapped), so Super+Shift stays distinct from Super.
+# Super+Alt is NOT distinct on macOS (Alt is part of Super), so Omarchy's Super+Alt binds have no twin here.
+
+config-version = 2
+start-at-login = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+accordion-padding = 30
+
+# Mouse follows focus only when focus changes monitor
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = true
+
+[key-mapping]
+preset = 'qwerty'
+
+[gaps]
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.right = 8
+outer.top = 8
+outer.bottom = 8
+
+[mode.main.binding]
+# Focus: Super + hjkl / arrows
+ctrl-alt-cmd-h = 'focus left'
+ctrl-alt-cmd-j = 'focus down'
+ctrl-alt-cmd-k = 'focus up'
+ctrl-alt-cmd-l = 'focus right'
+ctrl-alt-cmd-left = 'focus left'
+ctrl-alt-cmd-down = 'focus down'
+ctrl-alt-cmd-up = 'focus up'
+ctrl-alt-cmd-right = 'focus right'
+
+# Swap/move window: Super + Shift + hjkl / arrows
+ctrl-alt-cmd-shift-h = 'move left'
+ctrl-alt-cmd-shift-j = 'move down'
+ctrl-alt-cmd-shift-k = 'move up'
+ctrl-alt-cmd-shift-l = 'move right'
+ctrl-alt-cmd-shift-left = 'move left'
+ctrl-alt-cmd-shift-down = 'move down'
+ctrl-alt-cmd-shift-up = 'move up'
+ctrl-alt-cmd-shift-right = 'move right'
+
+# Workspaces: Super + N, move window: Super + Shift + N
+ctrl-alt-cmd-1 = 'workspace 1'
+ctrl-alt-cmd-2 = 'workspace 2'
+ctrl-alt-cmd-3 = 'workspace 3'
+ctrl-alt-cmd-4 = 'workspace 4'
+ctrl-alt-cmd-5 = 'workspace 5'
+ctrl-alt-cmd-6 = 'workspace 6'
+ctrl-alt-cmd-7 = 'workspace 7'
+ctrl-alt-cmd-8 = 'workspace 8'
+ctrl-alt-cmd-9 = 'workspace 9'
+ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+ctrl-alt-cmd-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+ctrl-alt-cmd-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+ctrl-alt-cmd-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+ctrl-alt-cmd-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+ctrl-alt-cmd-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+ctrl-alt-cmd-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+ctrl-alt-cmd-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+
+ctrl-alt-cmd-tab = 'workspace --wrap-around next'
+ctrl-alt-cmd-shift-tab = 'workspace --wrap-around prev'
+
+# Window state
+ctrl-alt-cmd-w = 'close'
+ctrl-alt-cmd-f = 'fullscreen'
+ctrl-alt-cmd-t = 'layout floating tiling'
+ctrl-alt-cmd-e = 'layout tiles horizontal vertical'      # Omarchy: toggle split
+ctrl-alt-cmd-a = 'layout tiles accordion'                # toggle workspace layout (both)
+
+# Resize: Super + -/=  (Omarchy uses the same keys)
+ctrl-alt-cmd-minus = 'resize smart -100'
+ctrl-alt-cmd-equal = 'resize smart +100'
+
+# Apps (Omarchy: Super+Enter terminal, Super+Shift+Enter browser)
+ctrl-alt-cmd-enter = 'exec-and-forget open -na WezTerm'
+ctrl-alt-cmd-shift-enter = 'exec-and-forget open -a "Brave Browser"'
+
+# Escape hatch: Super + Shift + ; enters service mode
+ctrl-alt-cmd-shift-semicolon = 'mode service'
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+
+# Never tile these
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'org.pqrs.Karabiner-Elements.Settings'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.calculator'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.archiveutility'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = '(?i)asyar'
+run = 'layout floating'

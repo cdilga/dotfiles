@@ -1,0 +1,15 @@
+#!/bin/bash
+# Called by mx-gesture with one event. Same meanings as the Solaar rules on Omarchy.
+# Per-machine overrides (e.g. a different browser at work): ~/.config/mx-gesture/action.local
+[ -x "$HOME/.config/mx-gesture/action.local" ] && exec "$HOME/.config/mx-gesture/action.local" "$@"
+BROWSER_APP="${MX_BROWSER_APP:-Brave Browser}"
+TERMINAL_APP="${MX_TERMINAL_APP:-WezTerm}"
+aerospace=/opt/homebrew/bin/aerospace
+
+case "$1" in
+  swipe-right) "$aerospace" workspace --wrap-around next ;;
+  swipe-left)  "$aerospace" workspace --wrap-around prev ;;
+  swipe-up)    open -a "$BROWSER_APP" ;;     # focus if running, else launch
+  swipe-down)  open -a "$TERMINAL_APP" ;;
+  tap)         : ;;                           # unused, as on Omarchy
+esac

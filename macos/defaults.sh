@@ -1,12 +1,11 @@
 #!/bin/bash
-# Idempotent macOS settings for the WM stack. Safe to re-run.
+# Idempotent macOS settings for the WM stack (AeroSpace + Karabiner). Safe to re-run.
 set -euo pipefail
 
 PL=~/Library/Preferences/com.apple.symbolichotkeys.plist
 
-# Deterministic Spaces: no MRU reordering, one Space set per display
+# Deterministic Spaces: no MRU reordering
 defaults write com.apple.dock mru-spaces -bool false
-defaults write com.apple.spaces spans-displays -bool false
 
 # set_hk <id> <enabled:true|false> <param1> <keycode> <modifier-mask>
 set_hk() {
@@ -23,12 +22,18 @@ set_hk() {
     "$PL"
 }
 
-# Mission Control "Switch to Desktop N" = Ctrl+N (hotkeys 118..126; keycodes for 1..9)
+# AeroSpace owns workspaces now: turn off the old Mission Control "Switch to Desktop N" (Ctrl+N)
+# hotkeys (118..126) that the yabai setup enabled, so Ctrl+1..9 reach apps again.
 i=118
 for kc in 18 19 20 21 23 22 26 28 25; do
-  set_hk "$i" true 65535 "$kc" 262144
+  set_hk "$i" false 65535 "$kc" 262144
   i=$((i + 1))
 done
+
+# AeroSpace recommendations: one Space set spanning displays (needs logout), and group
+# windows by app in Mission Control so AeroSpace's off-screen windows don't look tiny.
+defaults write com.apple.spaces spans-displays -bool true
+defaults write com.apple.dock expose-group-apps -bool true
 
 # Spotlight UI -> Option+Space (frees Cmd+Space for Asyar); Finder-search shortcut off
 set_hk 64 true 32 49 524288
@@ -40,4 +45,4 @@ defaults write com.openai.chat KeyboardShortcuts_toggleLauncher -string '{"carbo
 
 killall Dock cfprefsd 2>/dev/null || true
 /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u || true
-echo "Done. Manual: create Spaces up to 9 in Mission Control; log out/in if shortcuts don't apply."
+echo "Done. Log out/in once for the Spaces setting and shortcut changes to apply."

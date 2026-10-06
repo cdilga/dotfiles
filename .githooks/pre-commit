@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Block commits that contain secrets. This repo is public. Enabled by bootstrap.sh
+# (git config core.hooksPath .githooks). Fails closed if gitleaks is missing.
+set -euo pipefail
+if ! command -v gitleaks >/dev/null; then
+  echo "pre-commit: gitleaks not installed (brew install gitleaks / pacman -S gitleaks). Refusing to commit." >&2
+  exit 1
+fi
+exec gitleaks git --pre-commit --staged --redact --no-banner --config "$(git rev-parse --show-toplevel)/.gitleaks.toml"

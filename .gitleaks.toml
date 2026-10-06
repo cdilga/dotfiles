@@ -1,0 +1,18 @@
+# gitleaks defaults plus rules for things this repo is likely to leak.
+[extend]
+useDefault = true
+
+[[rules]]
+id = "shell-secret-assignment"
+description = "Secret-looking variable assigned a literal value in a shell/env/config file"
+regex = '''(?i)\b[A-Z0-9_]*(TOKEN|SECRET|PASSWORD|PASSWD|API_KEY|APIKEY|PRIVATE_KEY)[A-Z0-9_]*\s*=\s*["']?([^\s"'$][^\s"']{7,})'''
+secretGroup = 2
+
+[[rules]]
+id = "url-embedded-credentials"
+description = "Credentials embedded in a URL"
+regex = '''[a-z][a-z0-9+.-]*://[^/\s:@]+:([^/\s@]{4,})@'''
+secretGroup = 1
+
+[allowlist]
+paths = ['''\.gitleaks\.toml$''']

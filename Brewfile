@@ -1,7 +1,6 @@
 # Provisioning manifest: `brew bundle --file=Brewfile`
-tap "asmvik/formulae"   # yabai (official tap; NOT a cask)
+tap "nikitabobko/tap"   # AeroSpace
 tap "xoshbin/asyar"
-tap "mmathys/tap"       # noswoosh
 
 # core CLI
 brew "git-lfs"
@@ -12,10 +11,10 @@ brew "fzf"
 brew "zoxide"
 brew "pyenv"
 brew "herdr"
+brew "gitleaks"         # pre-commit secret scan (.githooks/pre-commit)
 
-# window-management stack (see README)
-brew "asmvik/formulae/yabai"
+# window-management stack (see README / KEYMAP.md)
+cask "nikitabobko/tap/aerospace"
 cask "karabiner-elements"
-cask "mmathys/tap/noswoosh"
 cask "xoshbin/asyar/asyar"
 cask "wezterm"

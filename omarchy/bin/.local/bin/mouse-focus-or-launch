@@ -1,0 +1,11 @@
+#!/bin/bash
+# Usage: mouse-focus-or-launch <class-regex> <launch-command...>
+# Focus the most recently used window whose class matches, else launch it.
+pattern=$1; shift
+addr=$(hyprctl clients -j | jq -r --arg p "$pattern" \
+  '[.[] | select(.class | test($p; "i"))] | sort_by(.focusHistoryID) | .[0].address // empty')
+if [[ -n $addr ]]; then
+  hyprctl dispatch "hl.dsp.focus({ window = \"address:$addr\" })" >/dev/null
+else
+  setsid "$@" >/dev/null 2>&1 &
+fi
