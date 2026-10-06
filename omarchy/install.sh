@@ -22,6 +22,8 @@ grep -q 'require("hypr.shared_bindings")' "$bindings" 2>/dev/null ||
 hyprctl reload >/dev/null && hyprctl configerrors
 systemctl --user daemon-reload
 systemctl --user restart voxtype
-pkill -x solaar 2>/dev/null || pkill -f '/usr/bin/solaar' || true
-setsid solaar -w hide >/dev/null 2>&1 < /dev/null &
+# Relaunch Solaar inside the Hyprland session so its rules inherit HYPRLAND_INSTANCE_SIGNATURE (hyprctl).
+pkill -x solaar || true
+sleep 1
+hyprctl dispatch 'hl.dsp.exec_cmd("solaar -w hide")' >/dev/null
 echo "Done. Check: voxtype info accel; hyprctl configerrors"
