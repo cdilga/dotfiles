@@ -29,7 +29,7 @@ cat <<'MSG'
 
 Manual steps (macOS will not let scripts do these):
  1. System Settings > Privacy & Security:
-      Accessibility:     AeroSpace, Karabiner, Asyar, ~/.local/bin/mx-gesture
+      Accessibility:     AeroSpace, Karabiner, Asyar, noswoosh, ~/.local/bin/mx-gesture
       Input Monitoring:  Karabiner, ~/.local/bin/mx-gesture
  2. Asyar: set its global hotkey to Cmd+Space (Karabiner's Super+Space emits it).
  3. Dictation app (Wispr Flow / Handy / ...): set push-to-talk (hold) to F18. The MX gesture button sends it.

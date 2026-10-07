@@ -42,9 +42,10 @@ Keyboard-first and the same as Omarchy: see [KEYMAP.md](KEYMAP.md). SIP stays **
 - **AeroSpace**: tiling and its own virtual workspaces, so moving a window to workspace N works without the yabai scripting addition. It owns every `Super` binding.
 - **Karabiner-Elements**: **Caps Lock** is **Super**: Ctrl+Opt+Cmd while held, Esc on tap. The rest is `Super+Space` (Cmd+Space, Asyar) and `Super+V` (Cmd+V).
 - **mx-gesture**: re-diverts the MX Master gesture button over HID++ whenever the mouse connects (Options+ is not needed). Hold sends F18 for push-to-talk dictation, and swipes run `~/.config/mx-gesture/action`. It matches the Solaar rules on Omarchy.
+- **noswoosh**: removes the slide animation when switching native Spaces (trackpad swipe, Ctrl+←/→). AeroSpace workspaces (`Super+1..9`) are already instant.
 - **Asyar**: launcher, hotkey `Cmd+Space`. Apple Spotlight moves to `Option+Space`.
 
-yabai, skhd and noswoosh were dropped (October 2026) in favour of AeroSpace.
+yabai and skhd were dropped (October 2026) in favour of AeroSpace.
 
 `macos/defaults.sh` also moves ChatGPT's "Show mini" shortcut off `Option+Space`. The app has no UI to clear it.
 
