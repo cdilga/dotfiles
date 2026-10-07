@@ -1,7 +1,7 @@
 # Provisioning manifest: `brew bundle --file=Brewfile`
 tap "nikitabobko/tap"   # AeroSpace
 tap "xoshbin/asyar"
-tap "mmathys/tap"       # noswoosh
+tap "mediosz/tap"       # SwipeAeroSpace
 
 # core CLI
 brew "git-lfs"
@@ -17,6 +17,6 @@ brew "gitleaks"         # pre-commit secret scan (.githooks/pre-commit)
 # window-management stack (see README / KEYMAP.md)
 cask "nikitabobko/tap/aerospace"
 cask "karabiner-elements"
-cask "mmathys/tap/noswoosh"   # instant native Space switching (trackpad / Ctrl+arrows)
+cask "mediosz/tap/swipeaerospace"   # three-finger trackpad swipe -> AeroSpace workspaces
 cask "xoshbin/asyar/asyar"
 cask "wezterm"

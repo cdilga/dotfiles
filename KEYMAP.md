@@ -15,6 +15,7 @@ Everything else on Omarchy is its stock default (`Super+K`'s old menu is now `Su
 | Super + 1..9 | Go to workspace N | |
 | Super + Shift + 1..9 | Move window to workspace N (and follow) | |
 | Super + Tab / Super + Shift + Tab | Next / previous workspace | |
+| Three-finger swipe left / right (trackpad) | Next / previous workspace | macOS: SwipeAeroSpace |
 | Super + W | Close window | |
 | Super + F | Fullscreen | |
 | Super + T | Toggle floating | |

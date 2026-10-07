@@ -30,6 +30,20 @@ for kc in 18 19 20 21 23 22 26 28 25; do
   i=$((i + 1))
 done
 
+# One native Space only; AeroSpace workspaces replace the rest. Ctrl+Left/Right ("Move
+# left/right a space", 79/81) go back to apps.
+set_hk 79 false 65535 123 8650752
+set_hk 81 false 65535 124 8650752
+
+# Three-finger horizontal swipe belongs to SwipeAeroSpace (AeroSpace next/prev workspace),
+# so macOS must not also use it. Four-finger swipe stays on full-screen apps.
+for dom in com.apple.AppleMultitouchTrackpad com.apple.driver.AppleBluetoothMultitouch.trackpad; do
+  defaults write "$dom" TrackpadThreeFingerHorizSwipeGesture -int 0
+  defaults write "$dom" TrackpadFourFingerHorizSwipeGesture -int 2
+done
+defaults -currentHost write -g com.apple.trackpad.threeFingerHorizSwipeGesture -int 0
+defaults -currentHost write -g com.apple.trackpad.fourFingerHorizSwipeGesture -int 2
+
 # AeroSpace recommendations: one Space set spanning displays (needs logout), and group
 # windows by app in Mission Control so AeroSpace's off-screen windows don't look tiny.
 defaults write com.apple.spaces spans-displays -bool true
